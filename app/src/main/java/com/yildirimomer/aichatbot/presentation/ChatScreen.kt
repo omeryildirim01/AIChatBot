@@ -27,8 +27,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
+import com.yildirimomer.aichatbot.R
 import com.yildirimomer.aichatbot.data.model.PrompterMessage
 import com.yildirimomer.aichatbot.data.model.PrompterType
 import kotlinx.coroutines.launch
@@ -46,7 +48,7 @@ fun ChatScreen(
     LaunchedEffect(data) {
         coroutineScope.launch {
             if (listState.isScrollInProgress.not())
-            listState.animateScrollToItem(index = if (data.prompterMessages.isNotEmpty()) data.prompterMessages.size -1 else 0)
+                listState.animateScrollToItem(index = if (data.prompterMessages.isNotEmpty()) data.prompterMessages.size - 1 else 0)
         }
     }
 
@@ -80,18 +82,15 @@ fun ChatScreen(
             OutlinedTextField(
                 value = messageText.value,
                 onValueChange = { messageText.value = it },
-                label = { Text("type here..") },
+                label = { Text(stringResource(id = R.string.type_here)) },
                 modifier = Modifier
                     .padding(16.dp)
                     .weight(1f),
                 trailingIcon = {
-                    Icon(Icons.Default.Clear,
+                    Icon(
+                        Icons.Default.Clear,
                         contentDescription = "clear text",
-                        modifier = Modifier
-                            .clickable {
-                                messageText.value = TextFieldValue("")
-                            }
-                    )
+                        modifier = Modifier.clickable { messageText.value = TextFieldValue("") })
                 },
                 singleLine = true
             )
