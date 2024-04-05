@@ -17,9 +17,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.yildirimomer.aichatbot.R
-import com.yildirimomer.aichatbot.data.model.PrompterMessage
-import com.yildirimomer.aichatbot.data.model.PrompterType
-import com.yildirimomer.aichatbot.presentation.component.ChatScreen
 import org.koin.androidx.compose.koinViewModel
 
 @Composable

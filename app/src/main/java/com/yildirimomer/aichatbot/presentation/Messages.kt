@@ -1,4 +1,4 @@
-package com.yildirimomer.aichatbot.presentation.component
+package com.yildirimomer.aichatbot.presentation
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.LinearEasing
@@ -59,7 +59,7 @@ fun PrompterMessage(message: PrompterMessage) {
             ) {
 
                 if (message.processing) {
-                    RotatingAnimIcon()
+                    RotatingAIIcon()
                 }
                 Text(
                     text = "",
@@ -94,7 +94,7 @@ fun PrompterMessage(message: PrompterMessage) {
 }
 
 @Composable
-fun RotatingAnimIcon() {
+fun RotatingAIIcon() {
     val infiniteTransition = rememberInfiniteTransition(label = "transitive")
     val angle by infiniteTransition.animateFloat(
         initialValue = 0f,
