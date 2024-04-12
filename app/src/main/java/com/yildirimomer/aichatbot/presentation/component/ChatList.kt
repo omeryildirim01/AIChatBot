@@ -8,7 +8,7 @@ import androidx.compose.ui.Modifier
 import com.yildirimomer.aichatbot.presentation.HomeViewModel
 
 @Composable
-fun ChatListView(modifier: Modifier, data: HomeViewModel.HomeUIState) {
+fun ChatListView(modifier: Modifier, state: HomeViewModel.HomeUIState) {
     val listState = rememberLazyListState()
 
     LazyColumn(
@@ -16,7 +16,7 @@ fun ChatListView(modifier: Modifier, data: HomeViewModel.HomeUIState) {
         reverseLayout = true,
         state = listState
     ) {
-        itemsIndexed(data.messages.reversed()) { _, message ->
+        itemsIndexed(state.messages.reversed()) { _, message ->
             MessageItemTextView(message)
         }
     }

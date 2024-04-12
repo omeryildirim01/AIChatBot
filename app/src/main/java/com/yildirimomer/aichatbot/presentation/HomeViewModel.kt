@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(
     private val useCase: GenerateChatContentUseCase
-): ViewModel() {
+) : ViewModel() {
 
     private val _uiState = MutableStateFlow<HomeUIState>(HomeUIState(listOf()))
     val uiState: StateFlow<HomeUIState> = _uiState
@@ -25,20 +25,30 @@ class HomeViewModel(
             updateUIState(message)
             updateUIState(ChatMessage(processing = true, type = MessageType.SERVER))
             useCase.sendMessage(message).collectLatest { result ->
-                when(result) {
-                    is Result.Error -> {
-                        ChatMessage(processing = false, type = MessageType.SERVER, message = "An error occurred : ${result.exception.localizedMessage}")
+                updateUIState( message =
+                    when (result) {
+                        is Result.Error -> {
+                                ChatMessage(
+                                    processing = false,
+                                    type = MessageType.SERVER,
+                                    message = "An error occurred : ${result.exception.localizedMessage}"
+                                )
+                        }
+                        is Result.Success -> {
+                            result.data
+                        }
                     }
-                    is Result.Success -> {
-                        updateUIState(message = result.data)
-                    }
-                }
+                )
             }
         }
     }
 
-    private fun updateUIState(message: ChatMessage, error: String? = null, isLoading: Boolean = false) {
-        val items =  _uiState.value.messages.filter { it.processing.not() }.toMutableList()
+    private fun updateUIState(
+        message: ChatMessage,
+        error: String? = null,
+        isLoading: Boolean = false
+    ) {
+        val items = _uiState.value.messages.filter { it.processing.not() }.toMutableList()
         items.add(message)
         _uiState.update {
             it.copy(

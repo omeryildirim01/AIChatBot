@@ -15,7 +15,7 @@ import com.yildirimomer.aichatbot.presentation.HomeViewModel
 @Composable
 fun ChatScreen(
     paddingValues: PaddingValues,
-    data: HomeViewModel.HomeUIState,
+    state: HomeViewModel.HomeUIState,
     onClick: (ChatMessage) -> Unit
 ) {
 
@@ -31,7 +31,7 @@ fun ChatScreen(
                 .weight(1f)
                 .fillMaxWidth()
                 .padding(horizontal = 2.dp),
-            data = data
+            state = state
         )
         ChatInputRow {
             onClick.invoke(it)
