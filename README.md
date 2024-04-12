@@ -13,5 +13,5 @@ Have Fun: You can have fun chatting with Gemini AI.
   
 #### Preview
 
+![gemini-ui-preview](https://github.com/omeryildirim01/AIChatBot/assets/17796968/8ea5cf52-5be6-459d-bae7-fa87d3294945)
 
-![gemini-ai-chat](https://github.com/omeryildirim01/AIChatBot/assets/17796968/b644dcae-dd29-404e-a424-04c691bbd48b)
